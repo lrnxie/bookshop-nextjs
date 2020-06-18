@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Link from "next/link";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -76,7 +77,9 @@ export default function Cart() {
               </Col>
               <Col xs={2}>
                 <Card.Body>
-                  <Button>Checkout</Button>
+                  <Link href="/checkout">
+                    <Button>Checkout</Button>
+                  </Link>
                 </Card.Body>
               </Col>
             </Row>
