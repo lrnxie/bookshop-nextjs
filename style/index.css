@@ -5,3 +5,9 @@
   width: 100%;
   object-fit: scale-down;
 }
+
+.card-img-cart {
+  height: 100px;
+  width: 100%;
+  object-fit: scale-down;
+}
