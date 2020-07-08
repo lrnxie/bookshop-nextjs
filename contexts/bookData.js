@@ -39,4 +39,44 @@ export const bookData = [
     cover:
       "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1325861570l/170448.jpg",
   },
+  {
+    id: 6,
+    title: "The Hunger Games",
+    author: "Suzanne Collins",
+    price: 12.99,
+    cover:
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586722975l/2767052.jpg",
+  },
+  {
+    id: 7,
+    title: "The Kite Runner",
+    author: "Khaled Hosseini",
+    price: 17.99,
+    cover:
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1579036753l/77203._SY475_.jpg",
+  },
+  {
+    id: 8,
+    title: "The Little Prince",
+    author: "Antoine de Saint-Exupéry",
+    price: 10.99,
+    cover:
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1367545443l/157993.jpg",
+  },
+  {
+    id: 9,
+    title: "The Girl with the Dragon Tattoo",
+    author: "Stieg Larsson",
+    price: 16.99,
+    cover:
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327868566l/2429135.jpg",
+  },
+  {
+    id: 10,
+    title: "Life of Pi",
+    author: "Yann Martel",
+    price: 17.99,
+    cover:
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320562005l/4214.jpg",
+  },
 ];

@@ -22,7 +22,10 @@ const CheckoutForm = () => {
 
   const subtotal =
     cart.length > 0 &&
-    cart.map((item) => item.price).reduce((prev, next) => prev + next);
+    cart
+      .map((item) => item.price)
+      .reduce((prev, next) => prev + next)
+      .toFixed(2);
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);

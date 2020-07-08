@@ -11,7 +11,10 @@ export default function Cart() {
   const { cart, removeCart } = useContext(CartContext);
   const subtotal =
     cart.length > 0 &&
-    cart.map((item) => item.price).reduce((prev, next) => prev + next);
+    cart
+      .map((item) => item.price)
+      .reduce((prev, next) => prev + next)
+      .toFixed(2);
 
   const deleteItem = (id) => {
     removeCart(id);
