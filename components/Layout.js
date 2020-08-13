@@ -24,7 +24,7 @@ export default function Layout({ children }) {
           <Navbar.Brand style={{ cursor: "pointer" }}>Bookshop</Navbar.Brand>
         </Link>
         <Link href="/cart">
-          <Button className="ml-auto" variant="outline-primary">
+          <Button className="ml-auto" variant="outline-info">
             Cart{" "}
             <Badge variant="secondary">{cart.length > 0 && cart.length}</Badge>
           </Button>

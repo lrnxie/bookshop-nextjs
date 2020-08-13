@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import Book from "../components/Book";
+import BookItem from "../components/BookItem";
 import { bookData } from "../contexts/bookData";
 
 export default function Home({ books }) {
@@ -11,7 +11,7 @@ export default function Home({ books }) {
       <Row>
         {books.map((book) => (
           <Col sm={6} md={4} lg={3} key={book.id}>
-            <Book book={book} />
+            <BookItem book={book} />
           </Col>
         ))}
       </Row>

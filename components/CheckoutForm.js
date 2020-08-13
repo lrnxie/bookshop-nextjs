@@ -123,6 +123,7 @@ const CheckoutForm = () => {
 
         <Button
           block
+          variant="info"
           className="my-2"
           type="submit"
           disabled={!stripe || processing || disabled || error}

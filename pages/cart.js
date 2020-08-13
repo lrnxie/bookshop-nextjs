@@ -22,7 +22,7 @@ export default function Cart() {
 
   return (
     <div className="my-2">
-      <h5 className="ml-3">Shopping cart</h5>
+      <h5 className="ml-3">Shopping Cart</h5>
 
       {cart.length > 0 ? (
         <>
@@ -32,7 +32,7 @@ export default function Cart() {
               className="p-2 border-top-0 border-left-0 border-right-0"
             >
               <Row noGutters className="align-items-center">
-                <Col xs={1} md={2}>
+                <Col xs={1} md={2} className="d-none d-sm-block">
                   <Card.Img
                     className="card-img-cart"
                     variant="top"
@@ -58,7 +58,7 @@ export default function Cart() {
                       variant="outline-danger"
                       onClick={() => deleteItem(item.id)}
                     >
-                      Remove
+                      X
                     </Button>
                   </Card.Body>
                 </Col>
@@ -68,12 +68,12 @@ export default function Cart() {
 
           <Card className="p-2 border-0">
             <Row noGutters className="align-items-baseline">
-              <Col xs={6}>
+              <Col xs={4} md={6}>
                 <Card.Body>
                   <Card.Title className="text-center">Subtotal</Card.Title>
                 </Card.Body>
               </Col>
-              <Col xs={3} md={2}>
+              <Col xs={4} md={2}>
                 <Card.Body>
                   <Card.Title>${subtotal}</Card.Title>
                 </Card.Body>
@@ -81,7 +81,7 @@ export default function Cart() {
               <Col xs={2}>
                 <Card.Body>
                   <Link href="/checkout">
-                    <Button>Checkout</Button>
+                    <Button variant="info">Checkout</Button>
                   </Link>
                 </Card.Body>
               </Col>

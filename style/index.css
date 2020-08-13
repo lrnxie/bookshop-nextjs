@@ -11,3 +11,16 @@
   width: 100%;
   object-fit: scale-down;
 }
+
+.book-card:hover {
+  cursor: pointer;
+  border: 1px solid #c5c5c5;
+  position: relative;
+  bottom: 3px;
+}
+
+.info-img {
+  height: 300px;
+  width: 100%;
+  object-fit: scale-down;
+}
