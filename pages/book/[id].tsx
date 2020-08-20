@@ -1,10 +1,15 @@
+import { GetStaticProps, GetStaticPaths } from "next";
 import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 
 import { getAllBookIds, getBookInfo } from "../../contexts/bookData";
 import { CartContext } from "../../contexts/CartContext";
 
-export default function Book({ bookInfo }) {
+type Props = {
+  bookInfo: Book;
+};
+
+export default function Book({ bookInfo }: Props) {
   const { cart, addCart } = useContext(CartContext);
   const [isAdded, setAdded] = useState(
     cart.some((item) => item.id === bookInfo.id)
@@ -31,19 +36,19 @@ export default function Book({ bookInfo }) {
   );
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllBookIds();
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const bookInfo = getBookInfo(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const bookInfo: Book = getBookInfo(params.id as string);
   return {
     props: {
       bookInfo,
     },
   };
-}
+};

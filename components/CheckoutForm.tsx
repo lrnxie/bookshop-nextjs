@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import Router from "next/router";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { StripeCardElementChangeEvent } from "@stripe/stripe-js";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -11,7 +12,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { CartContext } from "../contexts/CartContext";
 import BillingInfo from "./BillingInfo";
 
-const CheckoutForm = () => {
+const CheckoutForm: React.FC = () => {
   const { cart, clearCart } = useContext(CartContext);
 
   useEffect(() => {
@@ -28,30 +29,30 @@ const CheckoutForm = () => {
       .toFixed(2);
 
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState("");
+  const [error, setError] = useState("");
+  const [processing, setProcessing] = useState<boolean | null>(null);
   const [disabled, setDisabled] = useState(true);
 
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleChange = (e) => {
+  const handleChange = (e: StripeCardElementChangeEvent) => {
     setDisabled(e.empty);
     setError(e.error ? e.error.message : "");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setProcessing(true);
 
     const billingDetails = {
-      name: e.target.name.value,
-      email: e.target.email.value,
+      name: e.currentTarget.customer.value,
+      email: e.currentTarget.email.value,
       address: {
-        line1: e.target.address.value,
-        city: e.target.city.value,
-        state: e.target.province.value,
-        postal_code: e.target.postal.value,
+        line1: e.currentTarget.address.value,
+        city: e.currentTarget.city.value,
+        state: e.currentTarget.province.value,
+        postal_code: e.currentTarget.postal.value,
       },
     };
 
@@ -126,7 +127,7 @@ const CheckoutForm = () => {
           variant="info"
           className="my-2"
           type="submit"
-          disabled={!stripe || processing || disabled || error}
+          disabled={!stripe || processing || disabled || error !== ""}
         >
           {processing ? (
             <Spinner animation="border" size="sm" />

@@ -7,7 +7,11 @@ import Badge from "react-bootstrap/Badge";
 
 import { CartContext } from "../contexts/CartContext";
 
-export default function Layout({ children }) {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
   const { cart } = useContext(CartContext);
 
   return (

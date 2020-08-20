@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -5,7 +6,11 @@ import Col from "react-bootstrap/Col";
 import BookItem from "../components/BookItem";
 import { bookData } from "../contexts/bookData";
 
-export default function Home({ books }) {
+type Props = {
+  books: Book[];
+};
+
+export default function Home({ books }: Props) {
   return (
     <Container fluid>
       <Row>
@@ -19,9 +24,9 @@ export default function Home({ books }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const books = bookData;
   return {
     props: { books },
   };
-}
+};

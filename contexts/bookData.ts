@@ -1,4 +1,4 @@
-export const bookData = [
+export const bookData: Book[] = [
   {
     id: "1",
     title: "To Kill a Mockingbird",
@@ -111,6 +111,6 @@ export function getAllBookIds() {
   });
 }
 
-export function getBookInfo(id) {
+export function getBookInfo(id: string) {
   return bookData.find((book) => book.id === id);
 }

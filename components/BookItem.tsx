@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
 
-const BookItem = ({ book }) => {
+interface BookItemProps {
+  book: Book;
+}
+
+const BookItem: React.FC<BookItemProps> = ({ book }) => {
   return (
     <Link href="/book/[id]" as={`/book/${book.id}`}>
       <Card className="my-2 mx-auto book-card">

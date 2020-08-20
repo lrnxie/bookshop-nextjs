@@ -16,7 +16,7 @@ export default function Cart() {
       .reduce((prev, next) => prev + next)
       .toFixed(2);
 
-  const deleteItem = (id) => {
+  const deleteItem = (id: string) => {
     removeCart(id);
   };
 

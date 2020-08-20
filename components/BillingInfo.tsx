@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const BillingInfo = () => {
+const BillingInfo: React.FC = () => {
   return (
     <>
       <Form.Group as={Row}>
@@ -10,7 +10,7 @@ const BillingInfo = () => {
           Name
         </Form.Label>
         <Col sm={10}>
-          <Form.Control required name="name" placeholder="John Doe" />
+          <Form.Control required name="customer" placeholder="John Doe" />
         </Col>
       </Form.Group>
 
