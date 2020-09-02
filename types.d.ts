@@ -6,3 +6,7 @@ type Book = {
   cover: string;
   summary: string;
 };
+
+interface CartItem extends Book {
+  amount: number;
+}

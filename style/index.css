@@ -6,12 +6,6 @@
   object-fit: scale-down;
 }
 
-.card-img-cart {
-  height: 100px;
-  width: 100%;
-  object-fit: scale-down;
-}
-
 .book-card:hover {
   cursor: pointer;
   border: 1px solid #c5c5c5;
@@ -23,4 +17,10 @@
   height: 300px;
   width: 100%;
   object-fit: scale-down;
+}
+
+.inline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }

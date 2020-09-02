@@ -3,6 +3,7 @@ import Router from "next/router";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { StripeCardElementChangeEvent } from "@stripe/stripe-js";
 import axios from "axios";
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -21,12 +22,12 @@ const CheckoutForm: React.FC = () => {
     }
   }, []);
 
-  const subtotal =
-    cart.length > 0 &&
-    cart
-      .map((item) => item.price)
+  const getOrderTotal = () => {
+    return cart
+      .map((item) => item.price * item.amount)
       .reduce((prev, next) => prev + next)
       .toFixed(2);
+  };
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -58,7 +59,7 @@ const CheckoutForm: React.FC = () => {
 
     try {
       const { data: clientSecret } = await axios.post("/api/payment_intents", {
-        amount: subtotal,
+        amount: getOrderTotal(),
         receipt_email: billingDetails.email,
       });
 
@@ -96,8 +97,8 @@ const CheckoutForm: React.FC = () => {
       Payment success. Thank you for your purchase.
     </h5>
   ) : (
-    <div style={{ maxWidth: "800px", margin: "auto", padding: "1rem" }}>
-      <h5>Checkout</h5>
+    <Container className="my-2">
+      <h4>Checkout</h4>
 
       <Form onSubmit={handleSubmit}>
         <BillingInfo />
@@ -132,13 +133,13 @@ const CheckoutForm: React.FC = () => {
           {processing ? (
             <Spinner animation="border" size="sm" />
           ) : (
-            `Pay $${subtotal}`
+            `Pay $${getOrderTotal()}`
           )}
         </Button>
 
         {error && <Form.Text className="text-danger">{error}</Form.Text>}
       </Form>
-    </div>
+    </Container>
   );
 };
 

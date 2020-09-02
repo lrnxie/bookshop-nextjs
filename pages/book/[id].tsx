@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useContext, useState } from "react";
+import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 import { getAllBookIds, getBookInfo } from "../../contexts/bookData";
@@ -21,7 +22,7 @@ export default function Book({ bookInfo }: Props) {
   };
 
   return (
-    <div className="m-2 d-flex flex-column flex-sm-row">
+    <Container fluid className="m-2 d-flex flex-column flex-sm-row">
       <img className="info-img" src={bookInfo.cover} alt="book cover" />
       <div className="m-2">
         <h3>{bookInfo.title}</h3>
@@ -32,7 +33,7 @@ export default function Book({ bookInfo }: Props) {
           Add to Cart
         </Button>
       </div>
-    </div>
+    </Container>
   );
 }
 

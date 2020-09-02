@@ -1,96 +1,65 @@
 import { useContext } from "react";
 import Link from "next/link";
+import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import { CartContext } from "../contexts/CartContext";
+import CartItem from "../components/CartItem";
 
 export default function Cart() {
-  const { cart, removeCart } = useContext(CartContext);
-  const subtotal =
-    cart.length > 0 &&
-    cart
-      .map((item) => item.price)
+  const { cart } = useContext(CartContext);
+
+  const getOrderItems = () => {
+    return cart.map((item) => item.amount).reduce((prev, next) => prev + next);
+  };
+
+  const getOrderTotal = () => {
+    return cart
+      .map((item) => item.price * item.amount)
       .reduce((prev, next) => prev + next)
       .toFixed(2);
-
-  const deleteItem = (id: string) => {
-    removeCart(id);
   };
 
   return (
-    <div className="my-2">
-      <h5 className="ml-3">Shopping Cart</h5>
+    <Container fluid className="mt-2 mb-4">
+      <Row className="ml-1">
+        <h4>Shopping Cart</h4>
+      </Row>
 
       {cart.length > 0 ? (
-        <>
-          {cart.map((item) => (
-            <Card
-              key={item.id}
-              className="p-2 border-top-0 border-left-0 border-right-0"
-            >
-              <Row noGutters className="align-items-center">
-                <Col xs={1} md={2} className="d-none d-sm-block">
-                  <Card.Img
-                    className="card-img-cart"
-                    variant="top"
-                    src={item.cover}
-                  />
-                </Col>
-                <Col xs={5} md={4}>
-                  <Card.Body>
-                    <Card.Text className="mb-1">{item.title}</Card.Text>
-                    <Card.Text className="text-muted">
-                      by {item.author}
-                    </Card.Text>
-                  </Card.Body>
-                </Col>
-                <Col xs={3} md={2}>
-                  <Card.Body>
-                    <Card.Text>${item.price}</Card.Text>
-                  </Card.Body>
-                </Col>
-                <Col xs={2}>
-                  <Card.Body>
-                    <Button
-                      variant="outline-danger"
-                      onClick={() => deleteItem(item.id)}
-                    >
-                      X
-                    </Button>
-                  </Card.Body>
-                </Col>
-              </Row>
-            </Card>
-          ))}
+        <Row className="my-2">
+          <Col md={8}>
+            <div>
+              {cart.map((item) => (
+                <CartItem item={item} key={item.id} />
+              ))}
+            </div>
+          </Col>
 
-          <Card className="p-2 border-0">
-            <Row noGutters className="align-items-baseline">
-              <Col xs={4} md={6}>
-                <Card.Body>
-                  <Card.Title className="text-center">Subtotal</Card.Title>
-                </Card.Body>
-              </Col>
-              <Col xs={4} md={2}>
-                <Card.Body>
-                  <Card.Title>${subtotal}</Card.Title>
-                </Card.Body>
-              </Col>
-              <Col xs={2}>
-                <Card.Body>
-                  <Link href="/checkout">
-                    <Button variant="info">Checkout</Button>
-                  </Link>
-                </Card.Body>
-              </Col>
-            </Row>
-          </Card>
-        </>
+          <Col md={4}>
+            <Card className="px-2 py-3">
+              <div className="inline">
+                <Card.Title>Order Summary</Card.Title>
+                <Card.Title>{getOrderItems()} Items</Card.Title>
+              </div>
+              <div className="inline">
+                <Card.Title>Order Total</Card.Title>
+                <Card.Title>${getOrderTotal()}</Card.Title>
+              </div>
+              <Link href="/checkout">
+                <Button variant="info" className="mt-3">
+                  Checkout
+                </Button>
+              </Link>
+            </Card>
+          </Col>
+        </Row>
       ) : (
         <h5 className="text-center mt-4">No items yet</h5>
       )}
-    </div>
+    </Container>
   );
 }
