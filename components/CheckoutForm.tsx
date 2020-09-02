@@ -23,10 +23,12 @@ const CheckoutForm: React.FC = () => {
   }, []);
 
   const getOrderTotal = () => {
-    return cart
-      .map((item) => item.price * item.amount)
-      .reduce((prev, next) => prev + next)
-      .toFixed(2);
+    if (cart.length > 0) {
+      return cart
+        .map((item) => item.price * item.amount)
+        .reduce((prev, next) => prev + next)
+        .toFixed(2);
+    }
   };
 
   const [success, setSuccess] = useState(false);
